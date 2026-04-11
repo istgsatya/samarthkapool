@@ -1,0 +1,4 @@
+- Premium resort landing page built with React + Vite + Tailwind + Framer Motion.
+- Mobile-first is the top priority; test visuals and interactions on small viewports first.
+- Keep data-driven content in `src/data/resortData.js` so images and labels are easy to replace.
+- Preserve cinematic motion and smooth scrolling behavior while keeping performance lightweight.

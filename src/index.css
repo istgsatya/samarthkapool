@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  overflow-x: hidden;
+  background: #e8efeb;
+  color: #0a2540;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ambient-band {
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(67, 198, 187, 0.24), transparent 44%),
+    radial-gradient(circle at 82% 84%, rgba(240, 138, 93, 0.24), transparent 48%),
+    radial-gradient(circle at 50% 42%, rgba(139, 215, 255, 0.12), transparent 52%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.3), rgba(28, 58, 82, 0.04));
+}
+
+.ambient-frame {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(240, 246, 243, 0.92), rgba(232, 242, 238, 0.88)) padding-box,
+    linear-gradient(130deg, rgba(67, 198, 187, 0.62), rgba(134, 206, 255, 0.44), rgba(240, 138, 93, 0.58)) border-box;
+  box-shadow:
+    0 10px 28px rgba(18, 49, 73, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-size: 100% 100%, 220% 220%;
+  animation: ambientShift 11s ease-in-out infinite;
+}
+
+.ambient-frame:hover {
+  box-shadow:
+    0 14px 34px rgba(18, 49, 73, 0.16),
+    0 0 24px rgba(67, 198, 187, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ambient-frame-strong {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(234, 243, 239, 0.96), rgba(224, 237, 232, 0.92)) padding-box,
+    linear-gradient(110deg, rgba(67, 198, 187, 0.78), rgba(120, 203, 255, 0.62), rgba(240, 138, 93, 0.75)) border-box;
+  box-shadow:
+    0 14px 36px rgba(18, 49, 73, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset;
+  background-size: 100% 100%, 220% 220%;
+  animation: ambientShift 9s ease-in-out infinite;
+}
+
+.ambient-chip {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(242, 248, 245, 0.95), rgba(233, 242, 238, 0.92)) padding-box,
+    linear-gradient(120deg, rgba(67, 198, 187, 0.54), rgba(240, 138, 93, 0.5)) border-box;
+}
+
+.ambient-action {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(135deg, rgba(240, 138, 93, 0.95), rgba(222, 108, 58, 0.96)) padding-box,
+    linear-gradient(115deg, rgba(255, 236, 220, 0.78), rgba(67, 198, 187, 0.74), rgba(240, 138, 93, 0.82)) border-box;
+  color: #fff;
+  box-shadow:
+    0 10px 24px rgba(240, 138, 93, 0.33),
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset;
+  background-size: 100% 100%, 220% 220%;
+  animation: ambientShift 8s ease-in-out infinite;
+}
+
+.ambient-photo {
+  border: 4px solid rgba(217, 244, 239, 0.92);
+  outline: 2px solid rgba(44, 170, 161, 0.72);
+  outline-offset: -2px;
+  box-shadow:
+    0 0 0 1px rgba(245, 255, 251, 0.55),
+    0 0 0 8px rgba(67, 198, 187, 0.34),
+    0 0 0 16px rgba(139, 215, 255, 0.22),
+    0 0 0 24px rgba(240, 138, 93, 0.14),
+    0 16px 38px rgba(10, 37, 64, 0.42),
+    0 0 52px rgba(67, 198, 187, 0.42),
+    0 0 92px rgba(46, 104, 144, 0.28);
+}
+
+.ambient-photo-luxe {
+  border-width: 6px;
+  outline-width: 3px;
+  box-shadow:
+    0 0 0 2px rgba(245, 255, 251, 0.58),
+    0 0 0 12px rgba(67, 198, 187, 0.36),
+    0 0 0 22px rgba(139, 215, 255, 0.24),
+    0 0 0 32px rgba(240, 138, 93, 0.16),
+    0 22px 46px rgba(10, 37, 64, 0.46),
+    0 0 66px rgba(67, 198, 187, 0.44),
+    0 0 118px rgba(46, 104, 144, 0.32);
+}
+
+.ambient-video {
+  border: 2px solid rgba(234, 249, 246, 0.84);
+  outline: 1px solid rgba(120, 203, 255, 0.48);
+  outline-offset: -1px;
+  box-shadow:
+    inset 0 0 0 1px rgba(67, 198, 187, 0.38),
+    inset 0 0 0 3px rgba(240, 138, 93, 0.22),
+    0 12px 28px rgba(18, 49, 73, 0.22);
+}
+
+.ambient-border-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg,
+    rgba(67, 198, 187, 0.45),
+    rgba(139, 215, 255, 0.4),
+    rgba(240, 138, 93, 0.46),
+    rgba(67, 198, 187, 0.45)
+  );
+  filter: blur(10px);
+  opacity: 0.45;
+  animation: ambientSpin 12s linear infinite;
+}
+
+/* Global hard reset for all border visuals */
+[class*='border'],
+.ambient-frame,
+.ambient-frame-strong,
+.ambient-chip,
+.ambient-action,
+.ambient-photo,
+.ambient-photo-luxe,
+.ambient-video {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ambient-border-glow::before,
+.dynamic-sheen::after {
+  display: none !important;
+}
+
+.dynamic-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.22) 48%, transparent 68%);
+  transform: translateX(-110%);
+  animation: sheenSlide 6s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #2ec4b6, #ff7a18);
+}
+
+::-webkit-scrollbar-track {
+  background: #bfcfcb;
+}
+
+.gpu-layer {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.horizontal-snap {
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.features-horizontal-track {
+  width: max-content;
+  will-change: transform;
+}
+
+.feature-panel {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.feature-panel-portrait {
+  min-height: clamp(34rem, 78svh, 48rem);
+}
+
+.gallery-3d-track {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.gallery-card {
+  transform-style: preserve-3d;
+}
+
+.gallery-mask {
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-morph-path {
+  will-change: d, transform, opacity;
+}
+
+[data-split] {
+  overflow: hidden;
+}
+
+.split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.booking-wave-text {
+  will-change: transform, opacity;
+}
+
+.velocity-particle {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.ripple-btn::after {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 58%);
+  opacity: 0;
+  transform: scale(0.3);
+  transition: transform 450ms ease, opacity 450ms ease;
+}
+
+.ripple-btn:active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ripple-btn:active {
+  transform: scale(0.98);
+}
+
+.soft-float {
+  animation: softFloat 8s ease-out infinite;
+}
+
+.cta-pulse {
+  animation: ctaPulse 2.8s ease-out infinite;
+}
+
+@keyframes ambientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ambientSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sheenSlide {
+  0%,
+  20% {
+    transform: translateX(-110%);
+  }
+  50%,
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ambient-frame,
+  .ambient-frame-strong,
+  .dynamic-sheen::after,
+  .ambient-border-glow::before {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .features-horizontal-track {
+    width: 100%;
+  }
+
+  .ambient-frame,
+  .ambient-frame-strong,
+  .ambient-action,
+  .dynamic-sheen::after,
+  .ambient-border-glow::before {
+    animation: none !important;
+    background-size: 100% 100%, 100% 100%;
+  }
+
+  .feature-panel-portrait {
+    min-width: 92vw;
+    min-height: clamp(36rem, 84svh, 54rem);
+  }
+}
