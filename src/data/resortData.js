@@ -7,34 +7,18 @@ import loopClipFive from '../../videos/WhatsApp Video 2026-04-11 at 20.06.44.mp4
 import normalImageOne from '../../normalimages/WhatsApp Image 2026-04-11 at 20.47.15.jpeg'
 import normalImageTwo from '../../normalimages/WhatsApp Image 2026-04-11 at 20.31.23.jpeg'
 import normalImageThree from '../../normalimages/WhatsApp Image 2026-04-11 at 20.48.33.jpeg'
-import roomImageOne from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.27.48.jpeg'
-import roomImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.46.15.jpeg'
-import roomImageThree from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.47.15.jpeg'
+import galleryImageOne from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.27.48.jpeg'
+import galleryImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.46.15.jpeg'
+import galleryImageThree from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.47.15.jpeg'
+import menuImageOne from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.04.jpeg'
+import menuImageTwo from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.17.jpeg'
+import menuImageThree from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.32.jpeg'
 
 export const navItems = [
   { id: 'hero', label: 'Home' },
-  { id: 'rooms', label: 'Rooms' },
   { id: 'menu', label: 'Menu' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'booking', label: 'Book' },
-]
-
-export const roomCards = [
-  {
-    title: 'Lounge Suite',
-    blurb: 'Warm lounge interiors with layered lighting and premium comfort.',
-    image: roomImageOne,
-  },
-  {
-    title: 'Poolside Escape',
-    blurb: 'A serene pool-facing stay with relaxed outdoor seating.',
-    image: roomImageTwo,
-  },
-  {
-    title: 'Nature View Room',
-    blurb: 'Calm views of open greens and natural daylight throughout the day.',
-    image: roomImageThree,
-  },
 ]
 
 export const foodMenuSections = [
@@ -65,6 +49,39 @@ export const foodMenuSections = [
       { name: 'Sizzling Brownie', description: 'Chocolate brownie with vanilla ice cream.', price: '₹190' },
       { name: 'Fresh Lime Soda', description: 'Sweet, salt, or mixed.', price: '₹90' },
     ],
+  },
+]
+
+export const menuImageCards = [
+  {
+    title: 'Menu Page 1',
+    image: menuImageOne,
+  },
+  {
+    title: 'Menu Page 2',
+    image: menuImageTwo,
+  },
+  {
+    title: 'Menu Page 3',
+    image: menuImageThree,
+  },
+]
+
+export const galleryFeatureCards = [
+  {
+    title: 'Gallery View 1',
+    blurb: 'Warm interiors with layered lighting and premium comfort.',
+    image: galleryImageOne,
+  },
+  {
+    title: 'Gallery View 2',
+    blurb: 'A serene pool-facing frame with relaxed outdoor seating.',
+    image: galleryImageTwo,
+  },
+  {
+    title: 'Gallery View 3',
+    blurb: 'Calm views of open greens and natural daylight throughout the day.',
+    image: galleryImageThree,
   },
 ]
 

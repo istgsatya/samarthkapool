@@ -1,19 +1,17 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion'
 import SectionHeading from './components/SectionHeading'
-import GalleryModal from './components/GalleryModal'
 import HorizontalScene from './components/HorizontalScene'
 import useResortGsap from './hooks/useResortGsap'
 import useIntersectionVideoPlayback from './hooks/useIntersectionVideoPlayback'
 import {
-  foodMenuSections,
-  galleryImages,
+  galleryFeatureCards,
   heroBackgroundImage,
   imageShowcaseSlots,
+  menuImageCards,
   navItems,
   resortHighlights,
   videoLoopSlots,
-  roomCards,
 } from './data/resortData'
 
 const sectionIds = navItems.map((item) => item.id)
@@ -24,7 +22,6 @@ const videoPlaybackOptions = {
 
 const mobileNavItems = [
   { id: 'hero', label: 'Home', icon: '⌂' },
-  { id: 'rooms', label: 'Rooms', icon: '▦' },
   { id: 'menu', label: 'Menu', icon: '🍽' },
   { id: 'gallery', label: 'Gallery', icon: '◫' },
   { id: 'booking', label: 'Contact', icon: '✆' },
@@ -32,7 +29,6 @@ const mobileNavItems = [
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeGalleryIndex, setActiveGalleryIndex] = useState(null)
   const [activeSection, setActiveSection] = useState('hero')
   const prefersReducedMotion = useReducedMotion()
   const rootRef = useResortGsap({ enabled: !prefersReducedMotion })
@@ -40,11 +36,6 @@ const App = () => {
   useIntersectionVideoPlayback(videoPlaybackOptions)
 
   const { scrollYProgress } = useScroll()
-
-  const galleryCards = useMemo(
-    () => galleryImages.map((image, index) => ({ image, title: `Frame ${index + 1}` })),
-    [],
-  )
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,13 +62,6 @@ const App = () => {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       setMenuOpen(false)
     }
-  }
-
-  const handleGalleryNavigate = (direction) => {
-    if (activeGalleryIndex === null) return
-    const total = galleryImages.length
-    const next = (activeGalleryIndex + direction + total) % total
-    setActiveGalleryIndex(next)
   }
 
   const sectionEnter = {
@@ -209,7 +193,7 @@ const App = () => {
             <SectionHeading
               eyebrow="Video Loops"
               title="Short looping videos for resort moments"
-              subtitle="These slots are ready for your 15-second clips. Replace URLs in `videoLoopSlots` anytime."
+              subtitle="All uploaded resort videos are now live in this section."
             />
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
@@ -239,12 +223,6 @@ const App = () => {
                         <source src={item.video} type="video/mp4" />
                       </video>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-transparent to-black/10" />
-                      <div className="absolute bottom-2 left-3 right-3 flex items-end justify-between gap-2">
-                        <p className="text-xs font-medium text-white/95">{item.title}</p>
-                        <span className="rounded-full border border-white/40 bg-black/25 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/95">
-                          15s Loop
-                        </span>
-                      </div>
                     </>
                   ) : (
                     <div className="flex h-full min-h-[190px] flex-col items-center justify-center gap-2 border-2 border-dashed border-ocean/25 bg-white/25 p-3 text-center">
@@ -288,20 +266,53 @@ const App = () => {
           </div>
         </motion.section>
 
+    <motion.section id="menu" className="ambient-band mx-auto max-w-6xl snap-start rounded-[2rem] px-4 py-16 sm:px-5 sm:py-24" {...sectionEnter}>
+          <SectionHeading
+            eyebrow="Dining Menu"
+            title="Explore our full menu"
+            subtitle="Browse the three menu pages below with current dishes and pricing."
+            splitTitle
+          />
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {menuImageCards.map((menuPage, index) => (
+              <motion.article
+                key={menuPage.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.22 }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
+                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                whileTap={{ scale: 0.99 }}
+                className="ambient-frame ambient-border-glow overflow-hidden rounded-3xl p-2.5 sm:p-3"
+              >
+                <img
+                  src={menuPage.image}
+                  alt={menuPage.title}
+                  className="ambient-photo ambient-photo-luxe gpu-layer aspect-[4/5] w-full rounded-2xl bg-ocean/5 object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 92vw, (max-width: 1280px) 46vw, 30vw"
+                />
+              </motion.article>
+            ))}
+          </div>
+        </motion.section>
+
         <HorizontalScene
-          id="rooms"
-          eyebrow="Stay"
-          title="Rooms designed for comfort and privacy"
-          subtitle="Swipe through signature rooms with clean layouts, soft lighting, and scenic views."
-          items={roomCards}
+          id="gallery"
+          eyebrow="Gallery"
+          title="Gallery designed for comfort and privacy"
+          subtitle="Swipe through signature gallery frames with clean layouts, soft lighting, and scenic views."
+          items={galleryFeatureCards}
           reducedMotion={prefersReducedMotion}
           splitTitle
           cardClassName="feature-panel feature-panel-portrait"
-          renderCard={(room, _index, isActive) => (
+          renderCard={(item, _index, isActive) => (
             <>
               <img
-                src={room.image}
-                alt={room.title}
+                src={item.image}
+                alt={item.title}
                 className={`ambient-photo ambient-photo-luxe gpu-layer h-full w-full bg-ocean/10 object-contain p-1.5 transition-transform duration-300 ${
                   isActive ? 'scale-[1.02]' : 'scale-100'
                 } group-hover:scale-[1.03]`}
@@ -311,85 +322,9 @@ const App = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/72 via-black/28 to-black/52" />
               <div className="absolute left-0 right-0 top-0 p-6 sm:p-7">
-                <h3 className="font-display text-3xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">{room.title}</h3>
-                <p className="mt-2 max-w-sm text-sm text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">{room.blurb}</p>
+                <h3 className="font-display text-3xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">{item.title}</h3>
+                <p className="mt-2 max-w-sm text-sm text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">{item.blurb}</p>
               </div>
-            </>
-          )}
-        />
-
-    <motion.section id="menu" className="ambient-band mx-auto max-w-6xl snap-start rounded-[2rem] px-4 py-16 sm:px-5 sm:py-24" {...sectionEnter}>
-          <SectionHeading
-            eyebrow="Dining Menu"
-            title="Fresh food menu for every mood"
-            subtitle="A simple house menu with guest favorites — you can replace any item from `foodMenuSections` later."
-            splitTitle
-          />
-
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {foodMenuSections.map((section, index) => (
-              <motion.article
-                key={section.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.22 }}
-                transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
-                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                whileTap={{ scale: 0.99 }}
-                className="ambient-frame ambient-border-glow rounded-3xl p-5 sm:p-6"
-              >
-                <div className="mb-4 flex items-center gap-3 border-b border-ocean/10 pb-3">
-                  <p className="text-2xl" aria-hidden>
-                    {section.icon}
-                  </p>
-                  <h3 className="font-display text-2xl text-ocean">{section.title}</h3>
-                </div>
-
-                <ul className="space-y-3">
-                  {section.items.map((dish) => (
-                    <li key={dish.name} className="rounded-2xl bg-white/45 p-3.5 ring-1 ring-white/40 backdrop-blur-sm">
-                      <div className="flex items-start justify-between gap-3">
-                        <h4 className="text-sm font-semibold text-ocean sm:text-base">{dish.name}</h4>
-                        <span className="shrink-0 rounded-full bg-ocean px-2.5 py-1 text-xs font-semibold text-beige">
-                          {dish.price}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs leading-relaxed text-ocean/70 sm:text-sm">{dish.description}</p>
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="mt-4 text-[11px] uppercase tracking-[0.16em] text-ocean/55">Ask staff for today&apos;s specials</p>
-              </motion.article>
-            ))}
-          </div>
-        </motion.section>
-
-        <HorizontalScene
-          id="gallery"
-          eyebrow="Gallery"
-          title="A closer look at the resort atmosphere"
-          subtitle="Browse real moments from rooms, open spaces, and scenic corners across the property."
-          items={galleryCards}
-          onCardClick={(index) => setActiveGalleryIndex(index)}
-          reducedMotion={prefersReducedMotion}
-          splitTitle
-          trackClassName="gallery-3d-track"
-          cardClassName="gallery-card"
-          renderCard={(item, index, isActive) => (
-            <>
-              <img
-                src={item.image}
-                alt={`Resort ambiance ${index + 1}`}
-                className={`ambient-photo gpu-layer h-full w-full object-cover transition duration-300 ${
-                  isActive ? 'scale-[1.02]' : 'scale-100'
-                } group-hover:scale-[1.03]`}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 640px) 82vw, 62vw"
-              />
-              <span className="gallery-mask absolute inset-0 origin-left bg-white/35" aria-hidden />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
             </>
           )}
         />
@@ -507,12 +442,6 @@ const App = () => {
         ))}
       </aside>
 
-      <GalleryModal
-        images={galleryImages}
-        activeIndex={activeGalleryIndex}
-        onClose={() => setActiveGalleryIndex(null)}
-        onNavigate={handleGalleryNavigate}
-      />
     </div>
   )
 }
