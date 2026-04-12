@@ -9,7 +9,6 @@ import normalImageTwo from '../../normalimages/WhatsApp Image 2026-04-11 at 20.3
 import normalImageThree from '../../normalimages/WhatsApp Image 2026-04-11 at 20.48.33.jpeg'
 import galleryImageOne from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.27.48.jpeg'
 import galleryImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.46.15.jpeg'
-import galleryImageThree from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.47.15.jpeg'
 import menuImageOne from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.04.jpeg'
 import menuImageTwo from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.17.jpeg'
 import menuImageThree from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.32.jpeg'
@@ -77,11 +76,6 @@ export const galleryFeatureCards = [
     title: 'Gallery View 2',
     blurb: 'A serene pool-facing frame with relaxed outdoor seating.',
     image: galleryImageTwo,
-  },
-  {
-    title: 'Gallery View 3',
-    blurb: 'Calm views of open greens and natural daylight throughout the day.',
-    image: galleryImageThree,
   },
 ]
 

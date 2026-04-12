@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion'
 import SectionHeading from './components/SectionHeading'
 import HorizontalScene from './components/HorizontalScene'
+import NetworkAwareHeroMedia from './components/NetworkAwareHeroMedia'
 import useResortGsap from './hooks/useResortGsap'
 import useIntersectionVideoPlayback from './hooks/useIntersectionVideoPlayback'
 import {
@@ -136,13 +137,10 @@ const App = () => {
 
       <main className="relative snap-y snap-proximity overflow-x-clip">
         <section id="hero" className="gsap-hero ambient-band relative min-h-[100svh] snap-start pt-20 sm:pt-24">
-          <motion.img
-            src={heroBackgroundImage}
-            alt="My Home and Resort exterior view"
+          <NetworkAwareHeroMedia
             className="hero-layer-back ambient-photo gpu-layer absolute inset-0 h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-            sizes="100vw"
+            posterSrc={heroBackgroundImage}
+            alt="My Home and Resort exterior view"
           />
 
           <div className="pointer-events-none absolute inset-x-0 bottom-20 z-10 px-4 sm:bottom-10">
@@ -206,22 +204,12 @@ const App = () => {
                 >
                   {item.video ? (
                     <>
-                      <video
-                        data-intersection-video="true"
+                      <NetworkAwareHeroMedia
                         className="ambient-video h-full w-full object-cover"
-                        autoPlay
-                        loop
-                        muted
-                        defaultMuted
-                        playsInline
-                        webkit-playsinline="true"
-                        x5-playsinline="true"
-                        disablePictureInPicture
-                        controlsList="nodownload noplaybackrate noremoteplayback"
-                        preload="metadata"
-                      >
-                        <source src={item.video} type="video/mp4" />
-                      </video>
+                        mp4Src={item.video}
+                        alt={item.title}
+                        trackIntersection
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-transparent to-black/10" />
                     </>
                   ) : (
@@ -313,7 +301,7 @@ const App = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className={`ambient-photo ambient-photo-luxe gpu-layer h-full w-full bg-ocean/10 object-contain p-1.5 transition-transform duration-300 ${
+                className={`ambient-photo ambient-photo-luxe gpu-layer h-full w-full bg-ocean/10 object-cover transition-transform duration-300 ${
                   isActive ? 'scale-[1.02]' : 'scale-100'
                 } group-hover:scale-[1.03]`}
                 loading="lazy"
@@ -367,7 +355,7 @@ const App = () => {
                   </span>
                   <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ocean/60">Support</span>
                 </a>
-                <p className="ambient-chip rounded-xl px-4 py-3.5">📍 Aron Road, Barbat Puta Petrol Pump ke paas, Raghogarh</p>
+                <p className="ambient-chip rounded-xl px-4 py-3.5">📍 Aron Road, Barbat Pura Petrol Pump ke paas, Raghogarh</p>
               </div>
 
               <div className="ambient-chip rounded-2xl p-4 sm:p-5">

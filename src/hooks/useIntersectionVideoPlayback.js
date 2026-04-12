@@ -16,6 +16,10 @@ const useIntersectionVideoPlayback = ({
     const videos = Array.from(document.querySelectorAll(selector))
     if (!videos.length || typeof IntersectionObserver === 'undefined') return noop
 
+    const isMobileViewport = window.matchMedia?.('(max-width: 768px)').matches
+    const effectiveThreshold = isMobileViewport ? Math.min(threshold, 0.3) : threshold
+    const effectiveRootMargin = isMobileViewport ? '-20% 0px -20% 0px' : rootMargin
+
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
     const shouldConserve = respectReducedMotion && reduceMotion
     const blockedVideos = new Set()
@@ -28,6 +32,10 @@ const useIntersectionVideoPlayback = ({
     }
 
     const playSafe = (video) => {
+      if (video.readyState < 2) {
+        video.load()
+      }
+
       const playPromise = video.play()
       if (playPromise?.then) {
         playPromise
@@ -51,7 +59,7 @@ const useIntersectionVideoPlayback = ({
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight
       const visibleHeight = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0))
       const ratio = rect.height > 0 ? visibleHeight / rect.height : 0
-      return ratio >= threshold
+      return ratio >= effectiveThreshold
     }
 
     const syncVideoState = () => {
@@ -96,7 +104,7 @@ const useIntersectionVideoPlayback = ({
       (entries) => {
         entries.forEach((entry) => {
           const video = entry.target
-          const isInView = entry.isIntersecting && entry.intersectionRatio >= threshold
+          const isInView = entry.isIntersecting && entry.intersectionRatio >= effectiveThreshold
 
           video.dataset.inview = isInView ? 'true' : 'false'
 
@@ -114,8 +122,8 @@ const useIntersectionVideoPlayback = ({
       },
       {
         root,
-        rootMargin,
-        threshold: [0, threshold, 1],
+        rootMargin: effectiveRootMargin,
+        threshold: [0, effectiveThreshold, 1],
       },
     )
 
@@ -126,15 +134,16 @@ const useIntersectionVideoPlayback = ({
       video.defaultMuted = true
       video.playsInline = true
       video.preload = 'auto'
-  video.volume = 0
+    video.volume = 0
       video.setAttribute('autoplay', '')
       video.setAttribute('loop', '')
       video.setAttribute('muted', '')
       video.setAttribute('playsinline', '')
       video.setAttribute('webkit-playsinline', 'true')
       video.setAttribute('x5-playsinline', 'true')
+    video.setAttribute('preload', 'auto')
       video.dataset.inview = 'false'
-  video.addEventListener('loadedmetadata', handleReadyState)
+    video.addEventListener('loadedmetadata', handleReadyState)
       video.addEventListener('loadeddata', handleReadyState)
       video.addEventListener('canplay', handleReadyState)
       video.addEventListener('ended', handleLoopFallback)
