@@ -156,16 +156,18 @@ const App = () => {
 
         </section>
 
-        <motion.section className="ambient-band snap-start px-4 py-8 sm:px-5 sm:py-10" {...sectionEnter}>
+        <motion.section className="snap-start px-4 py-8 sm:px-5 sm:py-10" {...sectionEnter}>
           <div className="mx-auto max-w-6xl">
-            <div className="ambient-frame ambient-border-glow rounded-3xl bg-gradient-to-r from-ocean/90 via-ocean/80 to-turquoise/75 p-4 text-white shadow-[0_14px_34px_rgba(10,37,64,0.25)] ring-1 ring-white/25 sm:p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+            <div className="ambient-border-glow relative isolate overflow-hidden rounded-3xl border border-turquoise/35 bg-ocean p-4 text-white shadow-[0_18px_40px_rgba(8,26,46,0.5)] sm:p-6">
+              <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(67,198,187,0.22),transparent_42%),linear-gradient(135deg,rgba(8,30,52,0.96),rgba(8,34,58,0.98))]" />
+
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-turquoise">
                 {bookingAvailabilityBanner.eyebrow}
               </p>
               <h2 className="mt-2 font-display text-2xl leading-tight text-white sm:text-3xl">
                 {bookingAvailabilityBanner.title}
               </h2>
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/90 sm:text-base">
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/95 sm:text-base">
                 {bookingAvailabilityBanner.subtitle}
               </p>
 
@@ -173,7 +175,7 @@ const App = () => {
                 {bookingAvailabilityBanner.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-white/35 bg-white/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/95 backdrop-blur-sm sm:text-xs"
+                    className="rounded-full border border-turquoise/45 bg-white/14 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] backdrop-blur-sm sm:text-xs"
                   >
                     {tag}
                   </span>
