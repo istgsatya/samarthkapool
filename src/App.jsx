@@ -6,6 +6,7 @@ import SafeVideo from './components/SafeVideo'
 import useResortGsap from './hooks/useResortGsap'
 import useIntersectionVideoPlayback from './hooks/useIntersectionVideoPlayback'
 import {
+  bookingAvailabilityBanner,
   galleryFeatureCards,
   heroBackgroundImage,
   imageShowcaseSlots,
@@ -137,9 +138,11 @@ const App = () => {
 
       <main className="relative snap-y snap-proximity overflow-x-clip">
         <section id="hero" className="gsap-hero ambient-band relative min-h-[100svh] snap-start pt-20 sm:pt-24">
-          <SafeVideo
-            className="hero-layer-back ambient-photo gpu-layer absolute inset-0 h-full w-full object-cover"
-            poster={heroBackgroundImage}
+          {/* Use the landing image from data as a static hero background */}
+          <img
+            src={heroBackgroundImage}
+            alt="Landing hero"
+            className="hero-layer-back ambient-photo gpu-layer absolute inset-0 h-full w-full object-cover object-center"
           />
 
           <div className="pointer-events-none absolute inset-x-0 bottom-20 z-10 px-4 sm:bottom-10">
@@ -152,6 +155,33 @@ const App = () => {
 
 
         </section>
+
+        <motion.section className="ambient-band snap-start px-4 py-8 sm:px-5 sm:py-10" {...sectionEnter}>
+          <div className="mx-auto max-w-6xl">
+            <div className="ambient-frame ambient-border-glow rounded-3xl bg-gradient-to-r from-ocean/90 via-ocean/80 to-turquoise/75 p-4 text-white shadow-[0_14px_34px_rgba(10,37,64,0.25)] ring-1 ring-white/25 sm:p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+                {bookingAvailabilityBanner.eyebrow}
+              </p>
+              <h2 className="mt-2 font-display text-2xl leading-tight text-white sm:text-3xl">
+                {bookingAvailabilityBanner.title}
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/90 sm:text-base">
+                {bookingAvailabilityBanner.subtitle}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                {bookingAvailabilityBanner.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/35 bg-white/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/95 backdrop-blur-sm sm:text-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
 
         <motion.section className="ambient-band snap-start px-4 py-16 sm:px-5 sm:py-20" {...sectionEnter}>
           <div className="mx-auto max-w-6xl">
@@ -330,7 +360,7 @@ const App = () => {
             <SectionHeading
               eyebrow="Book Now"
               title="Plan your stay in one quick call"
-              subtitle="Aron Road, Barbat Puta Petrol Pump ke paas, Raghogarh"
+              subtitle="Aron Road, Barbat Pura Petrol Pump ke paas, Raghogarh"
               splitTitle
             />
 

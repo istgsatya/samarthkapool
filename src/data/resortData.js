@@ -90,6 +90,14 @@ export const galleryImages = [
 
 export const heroBackgroundImage = heroFrontImage
 
+export const bookingAvailabilityBanner = {
+  eyebrow: 'Now Available',
+  title: 'Pool, Restaurant & Room Bookings',
+  subtitle:
+    'All facilities are available for private parties, family gatherings, and couple stays in a peaceful, isolated location.',
+  tags: ['Pool Booking', 'Restaurant Booking', 'Room Booking', 'Private Parties', 'Isolated Space'],
+}
+
 export const imageShowcaseSlots = [
   {
     title: 'Resort View 1',
