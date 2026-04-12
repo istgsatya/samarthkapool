@@ -91,11 +91,21 @@ export const galleryImages = [
 export const heroBackgroundImage = heroFrontImage
 
 export const bookingAvailabilityBanner = {
-  eyebrow: 'Now Available',
-  title: 'Pool, Restaurant & Room Bookings',
+  eyebrow: 'Now Booking ✨',
+  title: 'Pool, Restaurant, Rooms & Celebration Bookings',
   subtitle:
-    'All facilities are available for private parties, family gatherings, and couple stays in a peaceful, isolated location.',
-  tags: ['Pool Booking', 'Restaurant Booking', 'Room Booking', 'Private Parties', 'Isolated Space'],
+    'From shaadi and engagement vibes to birthday bashes and kitty parties — plus private parties, family get-togethers, and couple stays — everything is available in one peaceful, aesthetic, and nicely isolated location.',
+  tags: [
+    'Pool Booking',
+    'Restaurant Booking',
+    'Room Booking',
+    'Shaadi Events',
+    'Engagements',
+    'Birthday Parties',
+    'Kitty Parties',
+    'Private Parties',
+    'Isolated Space',
+  ],
 }
 
 export const imageShowcaseSlots = [
