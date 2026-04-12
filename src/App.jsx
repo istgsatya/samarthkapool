@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion'
 import SectionHeading from './components/SectionHeading'
 import HorizontalScene from './components/HorizontalScene'
-import NetworkAwareHeroMedia from './components/NetworkAwareHeroMedia'
+import SafeVideo from './components/SafeVideo'
 import useResortGsap from './hooks/useResortGsap'
 import useIntersectionVideoPlayback from './hooks/useIntersectionVideoPlayback'
 import {
@@ -137,10 +137,9 @@ const App = () => {
 
       <main className="relative snap-y snap-proximity overflow-x-clip">
         <section id="hero" className="gsap-hero ambient-band relative min-h-[100svh] snap-start pt-20 sm:pt-24">
-          <NetworkAwareHeroMedia
+          <SafeVideo
             className="hero-layer-back ambient-photo gpu-layer absolute inset-0 h-full w-full object-cover"
-            posterSrc={heroBackgroundImage}
-            alt="My Home and Resort exterior view"
+            poster={heroBackgroundImage}
           />
 
           <div className="pointer-events-none absolute inset-x-0 bottom-20 z-10 px-4 sm:bottom-10">
@@ -194,26 +193,28 @@ const App = () => {
               subtitle="All uploaded resort videos are now live in this section."
             />
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
+            <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 sm:gap-4">
               {videoLoopSlots.map((item, index) => (
                 <motion.article
                   key={`${item.title}-${index}`}
-                  className="ambient-frame ambient-border-glow relative overflow-hidden rounded-2xl min-h-[190px]"
+                  /* Use a portrait aspect ratio so videos render tall like the reference image */
+                  className="ambient-frame ambient-border-glow relative overflow-hidden rounded-2xl aspect-[9/16]"
                   whileHover={prefersReducedMotion ? undefined : { y: -5 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
                   {item.video ? (
                     <>
-                      <NetworkAwareHeroMedia
+                      <SafeVideo
                         className="ambient-video h-full w-full object-cover"
-                        mp4Src={item.video}
-                        alt={item.title}
-                        trackIntersection
+                        srcWebm={item.video?.replace(/\.mp4(\?.*)?$/i, '.webm$1')}
+                        srcMp4={item.video}
+                        poster={heroBackgroundImage}
                       />
+                      {/* subtle overlay for text/contrast */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-transparent to-black/10" />
                     </>
                   ) : (
-                    <div className="flex h-full min-h-[190px] flex-col items-center justify-center gap-2 border-2 border-dashed border-ocean/25 bg-white/25 p-3 text-center">
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-ocean/25 bg-white/25 p-3 text-center">
                       <span className="text-2xl text-ocean/55" aria-hidden>
                         🎬
                       </span>

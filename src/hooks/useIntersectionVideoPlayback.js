@@ -32,6 +32,8 @@ const useIntersectionVideoPlayback = ({
     }
 
     const playSafe = (video) => {
+      if (video.dataset.bufferReady !== 'true') return
+
       if (video.readyState < 2) {
         video.load()
       }
@@ -128,22 +130,16 @@ const useIntersectionVideoPlayback = ({
     )
 
     videos.forEach((video) => {
-      video.autoplay = true
-      video.loop = true
       video.muted = true
       video.defaultMuted = true
       video.playsInline = true
-      video.preload = 'auto'
-    video.volume = 0
-      video.setAttribute('autoplay', '')
-      video.setAttribute('loop', '')
+      video.volume = 0
       video.setAttribute('muted', '')
       video.setAttribute('playsinline', '')
       video.setAttribute('webkit-playsinline', 'true')
       video.setAttribute('x5-playsinline', 'true')
-    video.setAttribute('preload', 'auto')
       video.dataset.inview = 'false'
-    video.addEventListener('loadedmetadata', handleReadyState)
+      video.addEventListener('loadedmetadata', handleReadyState)
       video.addEventListener('loadeddata', handleReadyState)
       video.addEventListener('canplay', handleReadyState)
       video.addEventListener('ended', handleLoopFallback)
