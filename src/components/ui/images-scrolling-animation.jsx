@@ -20,6 +20,7 @@ const defaultProjects = [
 export const StickyCard_001 = ({ i, title, src, progress, range, targetScale }) => {
   const container = useRef(null)
   const scale = useTransform(progress, range, [1, targetScale])
+  const fallbackSrc = defaultProjects[i % defaultProjects.length]?.src
 
   return (
     <div ref={container} className="sticky top-0 flex items-center justify-center px-1 sm:px-3 lg:px-4">
@@ -31,12 +32,17 @@ export const StickyCard_001 = ({ i, title, src, progress, range, targetScale }) 
         className="relative -top-[18%] flex h-[300px] w-[92vw] max-w-[760px] origin-top flex-col overflow-hidden rounded-2xl sm:h-[400px] sm:w-[89vw] sm:max-w-[900px] sm:rounded-3xl md:h-[500px] md:w-[86vw] md:max-w-[1020px] lg:h-[620px] lg:w-[82vw] lg:max-w-[1140px]"
       >
         <img
-          src={src || '/placeholder.svg'}
+          src={src || fallbackSrc}
           alt={title}
           className="h-full w-full bg-ocean/5 object-cover object-center"
           loading="lazy"
           decoding="async"
           sizes="(max-width: 640px) 96vw, (max-width: 768px) 92vw, (max-width: 1024px) 88vw, 1140px"
+          onError={(event) => {
+            const target = event.currentTarget
+            if (target.src === fallbackSrc) return
+            target.src = fallbackSrc
+          }}
         />
       </motion.div>
     </div>
