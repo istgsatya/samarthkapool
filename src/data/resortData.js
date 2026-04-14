@@ -9,12 +9,6 @@ import normalImageTwo from '../../normalimages/WhatsApp Image 2026-04-11 at 20.3
 import normalImageThree from '../../normalimages/WhatsApp Image 2026-04-11 at 20.48.33.jpeg'
 import galleryImageOne from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.27.48.jpeg'
 import galleryImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.46.15.jpeg'
-import scrollGalleryImageOne from '../../scrollgallery1/Gemini_Generated_Image_ (1).png'
-import scrollGalleryImageTwo from '../../scrollgallery1/Gemini_Generated_Image_ (2).png'
-import scrollGalleryImageThree from '../../scrollgallery1/Gemini_Generated_Image_ (3).png'
-import scrollGalleryImageFour from '../../scrollgallery1/Gemini_Generated_Image_ (4).png'
-import scrollGalleryImageFive from '../../scrollgallery1/Gemini_Generated_Image_ (5).png'
-import scrollGalleryImageSix from '../../scrollgallery1/Gemini_Generated_Image_ (6).png'
 
 export const navItems = [
   { id: 'hero', label: 'Home' },
@@ -128,27 +122,27 @@ export const imageShowcaseSlots = [
 export const scrollingImageProjects = [
   {
     title: 'Scroll Gallery 1',
-    src: scrollGalleryImageOne,
+    src: '/images/scroll-gallery-1.png',
   },
   {
     title: 'Scroll Gallery 2',
-    src: scrollGalleryImageTwo,
+    src: '/images/scroll-gallery-2.png',
   },
   {
     title: 'Scroll Gallery 3',
-    src: scrollGalleryImageThree,
+    src: '/images/scroll-gallery-3.png',
   },
   {
     title: 'Scroll Gallery 4',
-    src: scrollGalleryImageFour,
+    src: '/images/scroll-gallery-4.png',
   },
   {
     title: 'Scroll Gallery 5',
-    src: scrollGalleryImageFive,
+    src: '/images/scroll-gallery-5.png',
   },
   {
     title: 'Scroll Gallery 6',
-    src: scrollGalleryImageSix,
+    src: '/images/scroll-gallery-6.png',
   },
 ]
 
