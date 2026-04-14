@@ -1,4 +1,4 @@
-import heroFrontImage from '../../images /image1.jpg'
+import heroFrontImage from '../../images /Gemini_Generated_Image_ (7).png'
 import loopClipOne from '../../videos/WhatsApp Video 2026-04-11 at 20.06.34.mp4'
 import loopClipTwo from '../../videos/WhatsApp Video 2026-04-11 at 20.06.35.mp4'
 import loopClipThree from '../../videos/WhatsApp Video 2026-04-11 at 20.06.43.mp4'
@@ -12,11 +12,16 @@ import galleryImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20
 import menuImageOne from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.04.jpeg'
 import menuImageTwo from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.17.jpeg'
 import menuImageThree from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.32.jpeg'
+import scrollGalleryImageOne from '../../scrollgallery1/Gemini_Generated_Image_ (1).png'
+import scrollGalleryImageTwo from '../../scrollgallery1/Gemini_Generated_Image_ (2).png'
+import scrollGalleryImageThree from '../../scrollgallery1/Gemini_Generated_Image_ (3).png'
+import scrollGalleryImageFour from '../../scrollgallery1/Gemini_Generated_Image_ (4).png'
+import scrollGalleryImageFive from '../../scrollgallery1/Gemini_Generated_Image_ (5).png'
+import scrollGalleryImageSix from '../../scrollgallery1/Gemini_Generated_Image_ (6).png'
 
 export const navItems = [
   { id: 'hero', label: 'Home' },
   { id: 'menu', label: 'Menu' },
-  { id: 'gallery', label: 'Gallery' },
   { id: 'booking', label: 'Book' },
 ]
 
@@ -120,6 +125,33 @@ export const imageShowcaseSlots = [
   {
     title: 'Resort View 3',
     image: normalImageThree,
+  },
+]
+
+export const scrollingImageProjects = [
+  {
+    title: 'Scroll Gallery 1',
+    src: scrollGalleryImageOne,
+  },
+  {
+    title: 'Scroll Gallery 2',
+    src: scrollGalleryImageTwo,
+  },
+  {
+    title: 'Scroll Gallery 3',
+    src: scrollGalleryImageThree,
+  },
+  {
+    title: 'Scroll Gallery 4',
+    src: scrollGalleryImageFour,
+  },
+  {
+    title: 'Scroll Gallery 5',
+    src: scrollGalleryImageFive,
+  },
+  {
+    title: 'Scroll Gallery 6',
+    src: scrollGalleryImageSix,
   },
 ]
 

@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ocean: '#1C3A52',
-        turquoise: '#43C6BB',
-        sunset: '#F08A5D',
-        beige: '#F6F1E9',
+        ocean: '#D6E5F7',
+        turquoise: '#4BD7C8',
+        sunset: '#FF9A6A',
+        beige: '#0B1220',
       },
       boxShadow: {
         glow: '0 14px 28px rgba(46, 196, 182, 0.22)',
       },
       backgroundImage: {
-        'sunset-ocean': 'linear-gradient(135deg, #1C3A52 0%, #2F6C88 34%, #43C6BB 65%, #F08A5D 100%)',
+        'sunset-ocean': 'linear-gradient(135deg, #0B1220 0%, #11223A 34%, #1A3A5A 65%, #2B4A6C 100%)',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'serif'],
