@@ -9,9 +9,6 @@ import normalImageTwo from '../../normalimages/WhatsApp Image 2026-04-11 at 20.3
 import normalImageThree from '../../normalimages/WhatsApp Image 2026-04-11 at 20.48.33.jpeg'
 import galleryImageOne from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.27.48.jpeg'
 import galleryImageTwo from '../../normalimages2/WhatsApp Image 2026-04-11 at 20.46.15.jpeg'
-import menuImageOne from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.04.jpeg'
-import menuImageTwo from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.17.jpeg'
-import menuImageThree from '../../menuimage/WhatsApp Image 2026-04-11 at 23.38.32.jpeg'
 import scrollGalleryImageOne from '../../scrollgallery1/Gemini_Generated_Image_ (1).png'
 import scrollGalleryImageTwo from '../../scrollgallery1/Gemini_Generated_Image_ (2).png'
 import scrollGalleryImageThree from '../../scrollgallery1/Gemini_Generated_Image_ (3).png'
@@ -59,15 +56,15 @@ export const foodMenuSections = [
 export const menuImageCards = [
   {
     title: 'Menu Page 1',
-    image: menuImageOne,
+    image: '/images/menu-page-1.jpeg',
   },
   {
     title: 'Menu Page 2',
-    image: menuImageTwo,
+    image: '/images/menu-page-2.jpeg',
   },
   {
     title: 'Menu Page 3',
-    image: menuImageThree,
+    image: '/images/menu-page-3.jpeg',
   },
 ]
 
